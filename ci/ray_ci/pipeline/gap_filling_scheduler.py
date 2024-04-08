@@ -1,8 +1,10 @@
+import subprocess
 from datetime import datetime, timedelta
 from typing import List, Dict, Optional, Any
 
 from pybuildkite.buildkite import Buildkite
 
+from ci.ray_ci.utils import logger
 from release.ray_release.aws import get_secret_token
 from release.ray_release.configs.global_config import AWS_SECRET_BUILDKITE
 
@@ -41,10 +43,11 @@ class GapFillingScheduler:
 
         return builds[0]["commit"]
 
+
     def _get_builds(self, days_ago: int = 1) -> List[Dict[str, Any]]:
         return self.buildkite.builds().list_all_for_pipeline(
             self.buildkite_organization,
             self.buildkite_pipeline,
             created_from=datetime.now() - timedelta(days=days_ago),
-            branch="master",
+            branch=MASTER_BRANCH,
         )
