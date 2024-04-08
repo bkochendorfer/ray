@@ -2,7 +2,6 @@ from unittest import mock
 
 from ci.ray_ci.pipeline.gap_filling_scheduler import GapFillingScheduler
 
-
 @mock.patch("ray_ci.pipeline.gap_filling_scheduler.GapFillingScheduler._init_buildkite")
 @mock.patch("ray_ci.pipeline.gap_filling_scheduler.GapFillingScheduler._get_builds")
 def test_get_latest_revision_for_build_state(mock_init_buildkite, mock_get_builds):
