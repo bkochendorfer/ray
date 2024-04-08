@@ -43,7 +43,6 @@ class GapFillingScheduler:
 
         return builds[0]["commit"]
 
-
     def _get_builds(self, days_ago: int = 1) -> List[Dict[str, Any]]:
         return self.buildkite.builds().list_all_for_pipeline(
             self.buildkite_organization,
